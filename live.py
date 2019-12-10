@@ -20,19 +20,19 @@ options = {
     'gpu': 0.8
 }'''
 
-lastckp = int(re.search("[0-9]+", os.listdir(ckpt)[-1]).group(0))
-
 if len([path for path in os.listdir() if path == "ckpt"]) == 0:
     url = "https://drive.google.com/uc?id=1rlS0tKoGvzZ6wvjEkv6nNgG684akuEKy"
-    output = "ckpt"
+    output = "ckpt.zip"
 
     gdown.download(url, output, quiet=False)
 
     zipfile = ZipFile(output, "r")
-    zipfile.extractall()
+    zipfile.extractall("ckpt")
     zipfile.close()
 
     os.remove(output)
+
+lastckp = int(re.search("[0-9]+", os.listdir("ckpt")[-1]).group(0))
 
 options = {
     'model': 'cfg/tiny-yolo-voc-sign.cfg',
