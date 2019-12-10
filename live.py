@@ -3,24 +3,29 @@ from darkflow.net.build import TFNet
 import numpy as np
 import urllib.request
 import sys
+import os
+import re
 
 if len(sys.argv) != 2:
     print("Usage: python", sys.argv[0], "IPADDR")
     sys.exit(-1)
 
+'''
 options = {
     'model': 'cfg/yolo.cfg',
     'load': 'bin/yolo.weights',
     'threshold': 0.5,
     'gpu': 0.8
-}
-
-'''options = {
-    'model': 'cfg/tiny-yolo-voc-sign.cfg',
-    'load': 7250,
-    'threshold': 0.0,
-    'gpu': 0.8
 }'''
+
+lastckp = int(re.search("[0-9]+", os.listdir(ckpt)[-1]).group(0))
+
+options = {
+    'model': 'cfg/tiny-yolo-voc-sign.cfg',
+    'load': lastckp,
+    'threshold': 0.5,
+    'gpu': 0.8
+}
 
 tfnet = TFNet(options)
 colors = [tuple(255 * np.random.rand(3)) for _ in range(10)]
