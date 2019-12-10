@@ -3,7 +3,14 @@
 # run ". install.sh"
 
 python -m venv venv
-source "venv/Scripts/Activate"
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    source "venv/bin/activate"
+elif [[ "$OSTYPE" == "msys" ]]; then
+    source "venv/Scripts/Activate"
+else
+        echo "Unknown OS"
+        exit 1
+fi
 
 placebo="delete"
 
