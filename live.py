@@ -5,6 +5,8 @@ import urllib.request
 import sys
 import os
 import re
+import gdown
+from zipfile import ZipFile
 
 if len(sys.argv) != 2:
     print("Usage: python", sys.argv[0], "IPADDR")
@@ -19,6 +21,18 @@ options = {
 }'''
 
 lastckp = int(re.search("[0-9]+", os.listdir(ckpt)[-1]).group(0))
+
+if len([path for path in os.listdir() if path == "ckpt"]) == 0:
+    url = "https://drive.google.com/uc?id=1rlS0tKoGvzZ6wvjEkv6nNgG684akuEKy"
+    output = "ckpt"
+
+    gdown.download(url, output, quiet=False)
+
+    zipfile = ZipFile(output, "r")
+    zipfile.extractall()
+    zipfile.close()
+
+    os.remove(output)
 
 options = {
     'model': 'cfg/tiny-yolo-voc-sign.cfg',
