@@ -52,7 +52,7 @@ This was a manual process.
 1. Download CUDA toolkit v10.0 from https://developer.nvidia.com/cuda-toolkit-archive
 2. Download cuDNN for CUDA toolkit v10.0 from https://developer.nvidia.com/cudnn
 
-3. run `. install.sh` note the `.`, if you forget to add it, the script wont work properly.
+3. run `. install.sh` note the `.`, if you forget to add it, the script won't work as expected.
 
 # Execution
 * run python live.py IPPADDR (where IPADDR is the ip from the ipwebcam app = https://play.google.com/store/apps/details?id=com.pas.webcam&hl=en)
